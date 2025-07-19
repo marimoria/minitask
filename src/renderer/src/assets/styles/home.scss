@@ -1,0 +1,121 @@
+.board_app {
+	position: relative;
+	width: 100vw;
+	height: calc(var(--vh, 1vh) * 100);
+	background-image: url('@renderer/assets/images/background.svg');
+	background-size: contain;
+	background-position: center;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+
+	&--header {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		margin: 1rem;
+		margin-bottom: 0;
+	}
+
+	&--columns {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 1rem;
+		padding: 1rem;
+		width: 100%;
+		flex: 1;
+	}
+}
+
+.header {
+	&--icon {
+		width: 3.5em;
+		height: auto;
+	}
+
+	&--title {
+		font-family: 'Segoe UI', sans-serif;
+		color: rgb(111, 69, 30);
+	}
+}
+
+.columns {
+	&--todo,
+	&--progress,
+	&--done {
+		display: flex;
+		flex-direction: column;
+		padding: 0.7rem;
+		width: 100%;
+		flex: 1;
+		max-height: 85vh;
+		border-radius: 16px;
+		overflow: hidden;
+	}
+
+	&--todo {
+		background-color: var(--color-red);
+	}
+	&--progress {
+		background-color: var(--color-yellow);
+	}
+	&--done {
+		background-color: var(--color-green);
+	}
+}
+
+.columns_header {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.3rem;
+
+	&--icon {
+		width: 2.7em;
+		height: auto;
+	}
+}
+
+.columns_cards_area {
+	flex: 1;
+	overflow-y: auto;
+	min-height: 0; // very important so flex item can shrink
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding-right: 0.3rem;
+}
+
+.columns_add_task {
+	display: flex;
+	gap: 0.4rem;
+	margin-top: 0.7rem;
+
+	.add_task--input {
+		flex: 1;
+		padding: 0.5rem;
+		border-radius: 8px;
+		border: none;
+	}
+
+	.add_task--button {
+		padding: 0.5rem 1rem;
+		border: none;
+		border-radius: 8px;
+		background-color: #fff;
+		color: #333;
+		cursor: pointer;
+		font-weight: bold;
+
+		&:hover {
+			background-color: #eee;
+		}
+	}
+}

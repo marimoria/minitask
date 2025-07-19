@@ -1,14 +1,18 @@
 :root {
-	--color-yellow: #fce8bb;
-	--color-bright-orange: #f28c28;
-	--color-lime-green: #8ebe3f;
-	--color-basil-green: #4f9447;
-	--color-olive-green: #2e5a32;
-	--color-creamy-beige: #fcecd6;
+	/* Column backgrounds */
+	--color-green: #d4ead6;
+	--color-yellow: #fde6b9;
+	--color-red: #fbd1d3;
 
-	--main-gradient: linear-gradient(135deg, #f28c28, #d54f22, #8ebe3f, #4f9447);
-	--second-gradient: linear-gradient(135deg, #d54f22, #f28c28, #8ebe3f);
-	--light-gradient: linear-gradient(135deg, #fa8c67, #f9b570, #cfff83);
+	/* Column title */
+	--color-title-red: #9d3032;
+	--color-title-orange: #f9b65f;
+	--color-title-green: #8dd68a;
+
+	/* Gradients (optional if needed) */
+	--main-gradient: linear-gradient(135deg, #fbd1d3, #fde6b9, #cffbd2);
+	--second-gradient: linear-gradient(135deg, #cfe8fb, #fbd1d3, #fde6b9);
+	--light-gradient: linear-gradient(135deg, #e4f0ff, #fff0f2, #fdf5e6);
 }
 
 .button:hover {
