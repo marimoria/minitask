@@ -9,6 +9,17 @@ export default [
 	...eslintPluginVue.configs['flat/recommended'],
 	{
 		files: ['**/*.vue'],
+		rules: {
+			'prettier/prettier': [
+				'error',
+				{
+					useTabs: true,
+					tabWidth: 4,
+					vueIndentScriptAndStyle: true,
+					endOfLine: 'auto'
+				}
+			]
+		},
 		languageOptions: {
 			parser: vueParser,
 			parserOptions: {

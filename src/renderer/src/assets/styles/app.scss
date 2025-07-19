@@ -1,0 +1,81 @@
+:root {
+	--color-yellow: #fce8bb;
+	--color-bright-orange: #f28c28;
+	--color-lime-green: #8ebe3f;
+	--color-basil-green: #4f9447;
+	--color-olive-green: #2e5a32;
+	--color-creamy-beige: #fcecd6;
+
+	--main-gradient: linear-gradient(135deg, #f28c28, #d54f22, #8ebe3f, #4f9447);
+	--second-gradient: linear-gradient(135deg, #d54f22, #f28c28, #8ebe3f);
+	--light-gradient: linear-gradient(135deg, #fa8c67, #f9b570, #cfff83);
+}
+
+.button:hover {
+	transform: scale(1.05);
+	transition: transform 0.2s ease;
+}
+
+*,
+*::before,
+*::after {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+body {
+	overflow-x: hidden;
+	padding: 0;
+	margin: 0;
+}
+
+.fade-slide-router-enter-active,
+.fade-slide-router-leave-active {
+	transition: all 0.5s ease;
+}
+
+.fade-slide-router-enter-from,
+.fade-slide-router-leave-to {
+	opacity: 0;
+	transform: translateY(20px); // slide upward
+}
+
+.fade-slide-router-enter-to,
+.fade-slide-router-leave-from {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.gradient_1 {
+	background: var(--main-gradient);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #fff9f4;
+	background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--main-gradient);
+	border-radius: 10px;
+	border: 2px solid #fff9f4;
+}
+
+.popup_card::-webkit-scrollbar-thumb {
+	background-color: var(--accent-color);
+	border-radius: 10px;
+	border: 2px solid #fff9f4;
+}
