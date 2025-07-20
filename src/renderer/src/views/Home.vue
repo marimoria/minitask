@@ -1,43 +1,48 @@
 <template>
 	<div class="board_app">
 		<div class="board_app--header">
-			<img src="../assets/images/icon.png" alt="" class="header--icon" />
+			<img src="../assets/images/icon.png" class="header--icon" />
 			<h1 class="header--title">Mini Tasks</h1>
 		</div>
+
 		<div class="board_app--columns">
-			<div class="columns--todo">
+			<div class="columns--todo pixel-corners">
 				<div class="columns_header">
 					<img src="../assets/images/todo_icon.png" class="columns_header--icon" />
-					<h2 class="columns_header--title_todo">To Do</h2>
+					<h2 class="columns_header--title_todo">To-Do</h2>
 				</div>
 				<div class="columns_cards_area">
-					<Card :task="'Feed the dog'" :status="'todo'" />
-					<Card :task="'Water my plants'" :status="'todo'" />
+					<Card :task="'Water the plants'" :status="'todo'" />
+					<Card :task="'Calculus homework'" :status="'todo'" />
+					<Card :task="'English assignment'" :status="'todo'" />
 				</div>
 				<div class="columns_add_task">
-					<input type="text" placeholder="New task..." class="add_task--input" />
-					<button class="add_task--button">Add</button>
+					<input
+						type="text"
+						class="add_task--input pixel-corners-2"
+						placeholder="Insert new task..."
+					/>
+					<button class="add_task--button pixel-corners-2">Add</button>
 				</div>
 			</div>
 
-			<div class="columns--progress">
+			<div class="columns--progress pixel-corners">
 				<div class="columns_header">
 					<img src="../assets/images/progress_icon.png" class="columns_header--icon" />
 					<h2 class="columns_header--title_progress">Progress</h2>
 				</div>
 				<div class="columns_cards_area">
-					<Card :task="'Math homework'" :status="'progress'" />
+					<Card :task="'Biology review'" :status="'progress'" />
 				</div>
 			</div>
 
-			<div class="columns--done">
+			<div class="columns--done pixel-corners">
 				<div class="columns_header">
 					<img src="../assets/images/done_icon.png" class="columns_header--icon" />
-					<h2 class="columns_header--title_progress">Done</h2>
+					<h2 class="columns_header--title_done">Done</h2>
 				</div>
 				<div class="columns_cards_area">
-					<Card :task="'Buy groceries'" :status="'done'" />
-					<Card :task="'Read article'" :status="'done'" />
+					<Card :task="'Statistics review'" :status="'done'" />
 				</div>
 			</div>
 		</div>

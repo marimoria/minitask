@@ -5,6 +5,7 @@
 	background-image: url('@renderer/assets/images/background.svg');
 	background-size: contain;
 	background-position: center;
+
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
@@ -37,7 +38,7 @@
 	}
 
 	&--title {
-		font-family: 'Segoe UI', sans-serif;
+		font-family: 'PixelFont';
 		color: rgb(111, 69, 30);
 	}
 }
@@ -68,7 +69,7 @@
 }
 
 .columns_header {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-family: 'PixelFont';
 	font-size: 1rem;
 	margin-bottom: 0.5rem;
 
@@ -81,41 +82,61 @@
 		width: 2.7em;
 		height: auto;
 	}
+
+	&--title {
+		&_todo {
+			color: var(--color-title-red);
+		}
+		&_progress {
+			color: var(--color-title-yellow);
+		}
+		&_done {
+			color: var(--color-title-green);
+		}
+	}
 }
 
 .columns_cards_area {
-	flex: 1;
-	overflow-y: auto;
-	min-height: 0; // very important so flex item can shrink
 	display: flex;
 	flex-direction: column;
+	flex: 1;
 	gap: 0.5rem;
 	padding-right: 0.3rem;
+	overflow-y: auto;
+	min-height: 0;
 }
 
 .columns_add_task {
 	display: flex;
+	flex-direction: row;
 	gap: 0.4rem;
 	margin-top: 0.7rem;
+}
 
-	.add_task--input {
+.add_task {
+	&--input {
+		font-family: 'PixelFont';
 		flex: 1;
 		padding: 0.5rem;
 		border-radius: 8px;
 		border: none;
 	}
 
-	.add_task--button {
+	&--button {
+		font-family: 'PixelFont';
 		padding: 0.5rem 1rem;
 		border: none;
 		border-radius: 8px;
 		background-color: #fff;
 		color: #333;
-		cursor: pointer;
 		font-weight: bold;
 
+		transition: transform 0.2s ease;
+
 		&:hover {
-			background-color: #eee;
+			cursor: pointer;
+			transform: scale(1.08);
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
 		}
 	}
 }

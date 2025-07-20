@@ -6,13 +6,18 @@
 
 	/* Column title */
 	--color-title-red: #9d3032;
-	--color-title-orange: #f9b65f;
-	--color-title-green: #8dd68a;
+	--color-title-yellow: #b26a18;
+	--color-title-green: #479644;
 
 	/* Gradients (optional if needed) */
 	--main-gradient: linear-gradient(135deg, #fbd1d3, #fde6b9, #cffbd2);
 	--second-gradient: linear-gradient(135deg, #cfe8fb, #fbd1d3, #fde6b9);
 	--light-gradient: linear-gradient(135deg, #e4f0ff, #fff0f2, #fdf5e6);
+}
+
+@font-face {
+	font-family: PixelFont;
+	src: url('@renderer/assets/fonts/pixel_font.ttf');
 }
 
 .button:hover {
@@ -82,4 +87,198 @@ body {
 	background-color: var(--accent-color);
 	border-radius: 10px;
 	border: 2px solid #fff9f4;
+}
+
+.pixel-corners {
+	clip-path: polygon(
+		0px calc(100% - 20px),
+		4px calc(100% - 20px),
+		4px calc(100% - 12px),
+		8px calc(100% - 12px),
+		8px calc(100% - 8px),
+		12px calc(100% - 8px),
+		12px calc(100% - 4px),
+		20px calc(100% - 4px),
+		20px 100%,
+		calc(100% - 20px) 100%,
+		calc(100% - 20px) calc(100% - 4px),
+		calc(100% - 12px) calc(100% - 4px),
+		calc(100% - 12px) calc(100% - 8px),
+		calc(100% - 8px) calc(100% - 8px),
+		calc(100% - 8px) calc(100% - 12px),
+		calc(100% - 4px) calc(100% - 12px),
+		calc(100% - 4px) calc(100% - 20px),
+		100% calc(100% - 20px),
+		100% 20px,
+		calc(100% - 4px) 20px,
+		calc(100% - 4px) 12px,
+		calc(100% - 8px) 12px,
+		calc(100% - 8px) 8px,
+		calc(100% - 12px) 8px,
+		calc(100% - 12px) 4px,
+		calc(100% - 20px) 4px,
+		calc(100% - 20px) 0px,
+		20px 0px,
+		20px 4px,
+		12px 4px,
+		12px 8px,
+		8px 8px,
+		8px 12px,
+		4px 12px,
+		4px 20px,
+		0px 20px
+	);
+}
+
+.pixel-corners-2 {
+	clip-path: polygon(
+		0px calc(100% - 4px),
+		4px calc(100% - 4px),
+		4px 100%,
+		calc(100% - 4px) 100%,
+		calc(100% - 4px) calc(100% - 4px),
+		100% calc(100% - 4px),
+		100% 4px,
+		calc(100% - 4px) 4px,
+		calc(100% - 4px) 0px,
+		4px 0px,
+		4px 4px,
+		0px 4px
+	);
+}
+
+.pixel-corners-border,
+.pixel-corners-border--wrapper {
+	clip-path: polygon(
+		0px calc(100% - 16px),
+		4px calc(100% - 16px),
+		4px calc(100% - 8px),
+		8px calc(100% - 8px),
+		8px calc(100% - 4px),
+		16px calc(100% - 4px),
+		16px 100%,
+		calc(100% - 16px) 100%,
+		calc(100% - 16px) calc(100% - 4px),
+		calc(100% - 8px) calc(100% - 4px),
+		calc(100% - 8px) calc(100% - 8px),
+		calc(100% - 4px) calc(100% - 8px),
+		calc(100% - 4px) calc(100% - 16px),
+		100% calc(100% - 16px),
+		100% 16px,
+		calc(100% - 4px) 16px,
+		calc(100% - 4px) 8px,
+		calc(100% - 8px) 8px,
+		calc(100% - 8px) 4px,
+		calc(100% - 16px) 4px,
+		calc(100% - 16px) 0px,
+		16px 0px,
+		16px 4px,
+		8px 4px,
+		8px 8px,
+		4px 8px,
+		4px 16px,
+		0px 16px
+	);
+	position: relative;
+}
+.pixel-corners-border {
+	border: 4px solid transparent;
+}
+.pixel-corners-border--wrapper {
+	width: fit-content;
+	height: fit-content;
+}
+.pixel-corners-border--wrapper .pixel-corners-border {
+	display: block;
+	clip-path: polygon(
+		4px 16px,
+		8px 16px,
+		8px 8px,
+		16px 8px,
+		16px 4px,
+		calc(100% - 16px) 4px,
+		calc(100% - 16px) 8px,
+		calc(100% - 8px) 8px,
+		calc(100% - 8px) 16px,
+		calc(100% - 4px) 16px,
+		calc(100% - 4px) calc(100% - 16px),
+		calc(100% - 8px) calc(100% - 16px),
+		calc(100% - 8px) calc(100% - 8px),
+		calc(100% - 16px) calc(100% - 8px),
+		calc(100% - 16px) calc(100% - 4px),
+		16px calc(100% - 4px),
+		16px calc(100% - 8px),
+		8px calc(100% - 8px),
+		8px calc(100% - 16px),
+		4px calc(100% - 16px)
+	);
+}
+.pixel-corners-border::after,
+.pixel-corners-border--wrapper::after {
+	content: '';
+	position: absolute;
+	clip-path: polygon(
+		0px calc(100% - 16px),
+		4px calc(100% - 16px),
+		4px calc(100% - 8px),
+		8px calc(100% - 8px),
+		8px calc(100% - 4px),
+		16px calc(100% - 4px),
+		16px 100%,
+		calc(100% - 16px) 100%,
+		calc(100% - 16px) calc(100% - 4px),
+		calc(100% - 8px) calc(100% - 4px),
+		calc(100% - 8px) calc(100% - 8px),
+		calc(100% - 4px) calc(100% - 8px),
+		calc(100% - 4px) calc(100% - 16px),
+		100% calc(100% - 16px),
+		100% 16px,
+		calc(100% - 4px) 16px,
+		calc(100% - 4px) 8px,
+		calc(100% - 8px) 8px,
+		calc(100% - 8px) 4px,
+		calc(100% - 16px) 4px,
+		calc(100% - 16px) 0px,
+		16px 0px,
+		16px 4px,
+		8px 4px,
+		8px 8px,
+		4px 8px,
+		4px 16px,
+		0px 16px,
+		0px 50%,
+		4px 50%,
+		4px 16px,
+		8px 16px,
+		8px 8px,
+		16px 8px,
+		16px 4px,
+		calc(100% - 16px) 4px,
+		calc(100% - 16px) 8px,
+		calc(100% - 8px) 8px,
+		calc(100% - 8px) 16px,
+		calc(100% - 4px) 16px,
+		calc(100% - 4px) calc(100% - 16px),
+		calc(100% - 8px) calc(100% - 16px),
+		calc(100% - 8px) calc(100% - 8px),
+		calc(100% - 16px) calc(100% - 8px),
+		calc(100% - 16px) calc(100% - 4px),
+		16px calc(100% - 4px),
+		16px calc(100% - 8px),
+		8px calc(100% - 8px),
+		8px calc(100% - 16px),
+		4px calc(100% - 16px),
+		4px 50%,
+		0px 50%
+	);
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #dedede;
+	display: block;
+	pointer-events: none;
+}
+.pixel-corners-border::after {
+	margin: -4px;
 }
