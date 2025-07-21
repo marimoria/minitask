@@ -63,3 +63,6 @@ Thumbs.db
 
 # Prettier config cache
 .prettiercache
+
+# json
+minitasks.json

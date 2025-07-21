@@ -15,6 +15,16 @@ export default defineConfig({
 				'@renderer': resolve('src/renderer/src')
 			}
 		},
-		plugins: [vue()]
+		plugins: [vue()],
+		server: {
+			proxy: {
+				// DEV ONLY CONFIG
+				'/api': {
+					target: 'http://localhost:5000',
+					changeOrigin: true,
+					rewrite: (path) => path.replace(/^\/api/, '')
+				}
+			}
+		}
 	}
 });

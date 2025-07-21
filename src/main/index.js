@@ -1,6 +1,28 @@
+import path from 'path';
 import { app, shell, BrowserWindow, ipcMain } from 'electron';
-import { join } from 'path';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
+import { spawn } from 'child_process';
+
+function startPythonServer() {
+	const isProd = app.isPackaged;
+	const scriptPath = isProd
+		? path.join(process.resourcesPath, 'backend/app.py')
+		: path.join(process.cwd(), 'backend/app.py');
+
+	const python = spawn('python', [scriptPath]);
+
+	python.stdout.on('data', (data) => {
+		console.log(`Python: ${data}`);
+	});
+
+	python.stderr.on('data', (data) => {
+		console.error(`Python error: ${data}`);
+	});
+
+	python.on('close', (code) => {
+		console.log(`Python exited with code ${code}`);
+	});
+}
 
 function createWindow() {
 	// Create the browser window.
@@ -11,9 +33,9 @@ function createWindow() {
 		resizable: false,
 		show: false,
 		autoHideMenuBar: true,
-		icon: join(__dirname, '../../resources/icon.ico'),
+		icon: path.join(__dirname, '../../resources/icon.ico'),
 		webPreferences: {
-			preload: join(__dirname, '../preload/index.js'),
+			preload: path.join(__dirname, '../preload/index.js'),
 			sandbox: false
 		}
 	});
@@ -32,7 +54,7 @@ function createWindow() {
 	if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
 		mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL']);
 	} else {
-		mainWindow.loadFile(join(__dirname, '../renderer/index.html'));
+		mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'));
 	}
 }
 
@@ -53,6 +75,8 @@ app.whenReady().then(() => {
 	// IPC test
 	ipcMain.on('ping', () => console.log('pong'));
 
+	startPythonServer();
+
 	createWindow();
 
 	app.on('activate', function () {
@@ -70,6 +94,3 @@ app.on('window-all-closed', () => {
 		app.quit();
 	}
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

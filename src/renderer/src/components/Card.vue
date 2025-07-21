@@ -1,22 +1,21 @@
 <template>
-	<div class="card pixel-corners-border">
+	<div class="card pixel-corners-border" draggable="true" @dragstart="onDragStart($event)">
 		<div class="card_tick" :class="status">
 			<div v-if="status == 'todo'" class="card_tick--todo">⭕</div>
 			<div v-if="status == 'progress'" class="card_tick--progress">🟠</div>
 			<div v-if="status == 'done'" class="card_tick--done">🟢</div>
 		</div>
 		<div class="card_info">
-			<div class="card_info--task">{{ task }}</div>
+			<div class="card_info--task">{{ task.taskDesc }}</div>
 		</div>
-		<div class="card_del_button">🗑️</div>
+		<div class="card_del_button" @click="handleDelete()">🗑️</div>
 	</div>
 </template>
 
 <script setup>
-	// eslint-disable-next-line no-unused-vars
 	const props = defineProps({
 		task: {
-			type: String,
+			type: Object,
 			required: true
 		},
 		status: {
@@ -25,6 +24,22 @@
 			validator: (value) => ['todo', 'progress', 'done'].includes(value)
 		}
 	});
+
+	const cardEvents = defineEmits(['deleted', 'moved']);
+
+	function handleDelete() {
+		cardEvents('deleted', props.task.id, props.status);
+	}
+
+	function onDragStart(event) {
+		event.dataTransfer.setData(
+			'text/plain',
+			JSON.stringify({
+				id: props.task.id,
+				from: props.status
+			})
+		);
+	}
 </script>
 
 <style scoped lang="scss">

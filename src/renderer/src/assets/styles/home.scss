@@ -106,6 +106,16 @@
 	min-height: 0;
 }
 
+.columns_cards_area {
+	transition: 0.2s ease;
+	border-radius: 12px;
+}
+
+.columns_cards_area.drop-hover {
+	background-color: #e0f7ff;
+	border: 2px dashed #3399ff;
+}
+
 .columns_add_task {
 	display: flex;
 	flex-direction: row;
