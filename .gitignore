@@ -64,5 +64,5 @@ Thumbs.db
 # Prettier config cache
 .prettiercache
 
-# json
-minitasks.json
+# backend server generated through npm run build
+minitasks_server.exe

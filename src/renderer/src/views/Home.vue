@@ -91,13 +91,8 @@
 	import { onMounted, ref } from 'vue';
 	import Card from '../components/Card.vue';
 
-	/*
-	const isDev = import.meta.env.MODE === 'development';
-	const API_ROOT = isDev ? 'http://localhost:5000' : 'http://127.0.0.1:5000';
-	const API_URL = `${API_ROOT}/tasks`;
-	*/
-
-	const API_URL = '/api/tasks';
+	const baseURL = import.meta.env.DEV ? '/api' : 'http://127.0.0.1:5000';
+	const API_URL = `${baseURL}/tasks`;
 
 	const tasks = ref({});
 	const newTaskDesc = ref('');

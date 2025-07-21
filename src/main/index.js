@@ -3,13 +3,14 @@ import { app, shell, BrowserWindow, ipcMain } from 'electron';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import { spawn } from 'child_process';
 
+const isProd = app.isPackaged;
+
 function startPythonServer() {
-	const isProd = app.isPackaged;
 	const scriptPath = isProd
-		? path.join(process.resourcesPath, 'backend/app.py')
+		? path.join(process.resourcesPath, 'backend/minitasks_server.exe')
 		: path.join(process.cwd(), 'backend/app.py');
 
-	const python = spawn('python', [scriptPath]);
+	const python = isProd ? spawn(scriptPath) : spawn('python', [scriptPath]);
 
 	python.stdout.on('data', (data) => {
 		console.log(`Python: ${data}`);
@@ -38,6 +39,21 @@ function createWindow() {
 			preload: path.join(__dirname, '../preload/index.js'),
 			sandbox: false
 		}
+	});
+
+	// prod headers
+	mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+		const devCSP =
+			"default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-eval'; connect-src 'self' http://127.0.0.1:5000 ws://localhost:*; img-src 'self' data:;";
+		const prodCSP =
+			"default-src 'self'; connect-src 'self' http://127.0.0.1:5000; img-src 'self' data:; script-src 'self';";
+
+		callback({
+			responseHeaders: {
+				...details.responseHeaders,
+				'Content-Security-Policy': [isProd ? prodCSP : devCSP]
+			}
+		});
 	});
 
 	mainWindow.on('ready-to-show', () => {
