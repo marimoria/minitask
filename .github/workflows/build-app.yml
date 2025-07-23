@@ -3,28 +3,38 @@ name: Build App
 on:
   push:
     branches: [main]
-  workflow_dispatch:
+  workflow_dispatch: # Manual trigger
 
 jobs:
   build:
+    name: Build for ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Setup Python (for backend)
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install PyInstaller
+        run: pip install pyinstaller
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build app
+      - name: Build app for platform
         run: |
           if [[ "${{ runner.os }}" == "Windows" ]]; then
             npm run build:win
@@ -33,18 +43,15 @@ jobs:
           else
             npm run build:linux
           fi
+        shell: bash
 
-      - name: Upload Artifacts
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ runner.os }}-build
+          name: minitasks-${{ runner.os }}
           path: |
+            dist/*.exe
+            dist/*.dmg
             dist/*.AppImage
             dist/*.deb
-            dist/*.dmg
-            dist/*.exe
-            dist/*.zip
-            dist/**/*.tar.gz
-            dist/linux-unpacked
-            dist/mac
-            dist/win-unpacked
+            dist/*.snap
