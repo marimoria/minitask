@@ -31,6 +31,12 @@ jobs:
             - name: Install PyInstaller
               run: pip install pyinstaller
 
+            - name: Install backend Python dependencies
+              working-directory: resources/backend
+              run: |
+                  python -m pip install --upgrade pip
+                  pip install -r requirements.txt
+
             - name: Install dependencies
               run: npm ci
 
