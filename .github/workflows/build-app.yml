@@ -1,0 +1,50 @@
+name: Build App
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build app
+        run: |
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            npm run build:win
+          elif [[ "${{ runner.os }}" == "macOS" ]]; then
+            npm run build:mac
+          else
+            npm run build:linux
+          fi
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ runner.os }}-build
+          path: |
+            dist/*.AppImage
+            dist/*.deb
+            dist/*.dmg
+            dist/*.exe
+            dist/*.zip
+            dist/**/*.tar.gz
+            dist/linux-unpacked
+            dist/mac
+            dist/win-unpacked
