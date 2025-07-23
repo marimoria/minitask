@@ -30,7 +30,7 @@ export default defineConfig({
 			})
 		},
 		build: {
-			outDir: resolve('out'),
+			outDir: resolve('out/renderer'),
 			emptyOutDir: true,
 			sourcemap: false,
 			minify: 'esbuild'
