@@ -3,6 +3,7 @@ productName: minitasks
 directories:
     buildResources: resources
 files:
+    - out/**
     - '!**/.vscode/*'
     - '!src/*'
     - '!electron.vite.config.{js,ts,mjs,cjs}'

@@ -66,3 +66,5 @@ Thumbs.db
 
 # backend server generated through npm run build
 minitasks_server.exe
+resources/backend/log.txt
+resources/backend/minitasks.json
