@@ -1,52 +1,59 @@
 name: Build App
 
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+    push:
+        branches: [main]
+    workflow_dispatch:
 
 jobs:
-  build:
-    name: Build for ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+    build:
+        name: Build for ${{ matrix.os }}
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [ubuntu-latest, windows-latest, macos-latest]
 
-    steps:
-      - uses: actions/checkout@v4
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
+                  cache: 'npm'
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
+            - name: Setup Python (for backend)
+              uses: actions/setup-python@v5
+              with:
+                  python-version: '3.11'
 
-      - run: pip install pyinstaller
+            - name: Install PyInstaller
+              run: pip install pyinstaller
 
-      - run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Build app
-        run: |
-          if [ "${{ runner.os }}" = "Windows" ]; then
-            npm run build:win
-          elif [ "${{ runner.os }}" = "macOS" ]; then
-            npm run build:mac
-          else
-            npm run build:linux
-          fi
-        shell: bash
+            - name: Build app
+              run: |
+                  npm run build-backend
+                  npm run build
+                  if [[ "${{ runner.os }}" == "Windows" ]]; then
+                    npx electron-builder --win
+                  elif [[ "${{ runner.os }}" == "macOS" ]]; then
+                    npx electron-builder --mac
+                  else
+                    npx electron-builder --linux
+                  fi
+              shell: bash
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: minitasks-${{ runner.os }}
-          path: |
-            dist/*.exe
-            dist/*.dmg
-            dist/*.AppImage
-            dist/*.deb
-            dist/*.snap
+            - name: Upload build artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: minitasks-${{ runner.os }}
+                  path: |
+                      dist/**/*.exe
+                      dist/**/*.dmg
+                      dist/**/*.AppImage
+                      dist/**/*.deb
+                      dist/**/*.snap
