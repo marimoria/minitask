@@ -19,7 +19,6 @@ export default defineConfig({
 		},
 		plugins: [vue()],
 		server: {
-			// Dev server
 			...(isDev && {
 				proxy: {
 					'/api': {
@@ -29,6 +28,12 @@ export default defineConfig({
 					}
 				}
 			})
+		},
+		build: {
+			outDir: resolve('dist'),
+			emptyOutDir: true,
+			sourcemap: false,
+			minify: 'esbuild'
 		}
 	}
 });

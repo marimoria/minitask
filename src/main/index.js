@@ -8,7 +8,7 @@ const isProd = app.isPackaged;
 function startPythonServer() {
 	const scriptPath = isProd
 		? path.join(process.resourcesPath, 'backend/minitasks_server.exe')
-		: path.join(process.cwd(), 'backend/app.py');
+		: path.join(process.cwd(), 'resources/backend/app.py');
 
 	const python = isProd ? spawn(scriptPath) : spawn('python', [scriptPath]);
 
