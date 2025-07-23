@@ -1,6 +1,7 @@
-# minitasks
+# 🌿 MiniTasks
 
-An Electron application with Vue
+A cute lil app built to whimsify your life by making your tasks a tad bit less scarier and your mind a little more organized.<br>
+You can get this app on your windows/mac/linux through downloading the zip in [releases](https://github.com/marimoria/minitask/releases/tag/v1.0.0-stable)
 
 ## Recommended IDE Setup
 
