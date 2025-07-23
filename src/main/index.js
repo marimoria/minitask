@@ -1,5 +1,5 @@
 import path from 'path';
-import { app, shell, BrowserWindow, ipcMain } from 'electron';
+import { app, shell, BrowserWindow, ipcMain, globalShortcut } from 'electron';
 import { electronApp, optimizer, is } from '@electron-toolkit/utils';
 import { spawn } from 'child_process';
 
@@ -39,6 +39,11 @@ function createWindow() {
 			preload: path.join(__dirname, '../preload/index.js'),
 			sandbox: false
 		}
+	});
+
+	globalShortcut.register('Control+Shift+I', () => {
+		const win = BrowserWindow.getAllWindows()[0];
+		if (win) win.webContents.openDevTools({ mode: 'detach' });
 	});
 
 	// prod headers

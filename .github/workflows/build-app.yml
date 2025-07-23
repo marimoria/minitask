@@ -52,8 +52,8 @@ jobs:
               with:
                   name: minitasks-${{ runner.os }}
                   path: |
-                      dist/**/*.exe
-                      dist/**/*.dmg
-                      dist/**/*.AppImage
-                      dist/**/*.deb
-                      dist/**/*.snap
+                      dist/*.exe        
+                      dist/*.dmg        
+                      dist/*.AppImage   
+                      dist/*.deb       
+                      dist/*.snap
