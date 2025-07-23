@@ -3,8 +3,9 @@
 	"version": "1.0.0",
 	"description": "minitasks",
 	"main": "./out/main/index.js",
-	"author": "example.com",
-	"homepage": "https://electron-vite.org",
+	"author": "https://github.com/marimoria",
+	"homepage": "https://github.com/marimoria/minitask",
+	"icon": "resources/icon.ico",
 	"scripts": {
 		"format": "prettier --write .",
 		"lint": "eslint --cache .",

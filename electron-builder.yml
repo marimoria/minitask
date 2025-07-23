@@ -19,6 +19,9 @@ asarUnpack:
 win:
     icon: resources/icon.ico
     executableName: minitasks
+    signAndEditExecutable: true
+    target:
+        - msi
 nsis:
     artifactName: ${name}-${version}-setup.${ext}
     shortcutName: ${productName}
